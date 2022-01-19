@@ -1,5 +1,5 @@
 // mypipeline.groovy
-def call() {
+def call(String) {
 
 pipeline {
     agent any
