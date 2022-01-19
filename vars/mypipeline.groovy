@@ -1,6 +1,5 @@
 // mypipeline.groovy
-def call(String name = 'User') {
-		echo "Welcome, ${name}."
+def call() {
 
 pipeline {
     agent any
