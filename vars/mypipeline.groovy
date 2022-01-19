@@ -1,5 +1,5 @@
 vars
-| --- mypipelione.groovy
+--- mypipelione.groovy
 
 // mypipeline.groovy
 
