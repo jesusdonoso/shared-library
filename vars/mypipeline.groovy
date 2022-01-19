@@ -3,6 +3,10 @@ vars
 
 // mypipeline.groovy
 
+
+def call(String name = 'User') {
+		echo "Welcome, ${name}."
+
 pipeline {
     agent any
     stages {
@@ -64,4 +68,5 @@ pipeline {
             sh "echo 'fase failure'"
         }
     }
+}
 }
