@@ -57,7 +57,7 @@ pipeline {
             sh "curl \
                 -XPUT \
                 -H "Accept 'application/vnd.github.v3+json'" \
-                -H "Authorization token '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'"
+                -H "Authorization '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'"
                 https://api.github.com/repos/jesusdonoso/ms-iclab/pulls \
                 -d '{"feature-estadomundial","develop"}'"
         }
