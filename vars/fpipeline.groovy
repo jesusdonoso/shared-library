@@ -69,7 +69,7 @@ pipeline {
     post {
         always {
             sh "echo 'fase always executed post'"
-            sh """curl -X POST -d '{"title":"new feature","head":"feature-estadomundial","base":"develop"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token ghp_zNcS3X7AYDdFRhNXhPcrpTJ9vXotMS0sj1dd" https://api.github.com/repos/jesusdonoso/ms-iclab/pulls"""
+            sh """curl -X POST -d '{"title":"new feature","head":"feature-estadomundial","base":"develop"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token tokendegithub" https://api.github.com/repos/jesusdonoso/ms-iclab/pulls"""
         }
         success {
             sh "echo 'fase success'"
