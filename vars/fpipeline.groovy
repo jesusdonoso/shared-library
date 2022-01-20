@@ -55,10 +55,10 @@ pipeline {
         always {
             sh "echo 'fase always executed post'"
             sh "curl \
-                -XPUT \
-                -H "Accept 'application/vnd.github.v3+json'" \
-                https://api.github.com/repos/jesusdonoso/ms-iclab/pulls \
-                -d '{"feature-estadomundial","develop"}'"
+                    -X POST \
+                    -H "Accept 'application/vnd.github.v3+json'" \
+                    https://api.github.com/repos/jesusdonoso/ms-iclab/pulls \
+                    -d '{"feature-estadomundial","develop"}'"
         }
         success {
             sh "echo 'fase success'"
