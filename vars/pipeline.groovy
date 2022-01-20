@@ -1,6 +1,9 @@
 // pipeline.groovy
-def call(com.cloudbees.groovy.cps.impl.CpsClosure) {
-
+def call(body) {
+def config = [:]
+body.resolveStrategy = Closure.DELEGATE_FIRST
+body.delegate = config
+body()
 pipeline {
     agent any
     stages {
