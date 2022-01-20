@@ -1,5 +1,6 @@
-// pipeline.groovy
-def call() {
+// fpipeline.groovy
+def call(String) {
+
 pipeline {
     agent any
     stages {
