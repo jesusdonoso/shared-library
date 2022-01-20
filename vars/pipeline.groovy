@@ -1,5 +1,5 @@
 // pipeline.groovy
-def call(String) {
+def call(com.cloudbees.groovy.cps.impl.CpsClosure) {
 
 pipeline {
     agent any
