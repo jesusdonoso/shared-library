@@ -54,7 +54,7 @@ pipeline {
     post {
         always {
             sh "echo 'fase always executed post'"
-            sh """curl -X POST -d '{"title":"new feature","head":"feature-estadomundial","base":"develop"}' -H "Accept 'application/vnd.github.v3+json'" -u jesusdonoso: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 https://api.github.com/repos/jesusdonoso/ms-iclab/pulls"""
+            sh """curl -X POST -d '{"title":"new feature","head":"feature-estadomundial","base":"develop"}' -H "Accept 'application/vnd.github.v3+json'" https://api.github.com/repos/jesusdonoso/ms-iclab/pulls"""
         }
         success {
             sh "echo 'fase success'"
