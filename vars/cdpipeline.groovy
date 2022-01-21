@@ -1,11 +1,8 @@
-// fpipeline.groovy
+// cipipeline.groovy
 def call(String) {
 
 pipeline {
     agent any
-    environment {
-        JENKINSTOKEN = credentials('github-token')
-    }
     stages {
         stage("Paso 1: Download and checkout"){
             steps {
@@ -42,7 +39,7 @@ pipeline {
                 }
             }
         }
-        stage("SonarQube analysis") {
+        stage("Paso 5: SonarQube analysis") {
             steps {
             withSonarQubeEnv('sonarqube') { // You can override the credential to be used
       sh "mvn clean verify sonar:sonar \
@@ -53,17 +50,17 @@ pipeline {
     }
             }
         }
-        stage("Paso 5: Levantar Springboot APP"){
+        stage("Paso 6: Levantar Springboot APP"){
             steps {
                 sh 'mvn spring-boot:run &'
             }
         }
-        stage("Paso 6: Dormir(Esperar 10sg) "){
+        stage("Paso 7: Dormir(Esperar 60sg) "){
             steps {
-                sh 'sleep 100'
+                sh 'sleep 60'
             }
         }
-        stage("Paso 7: Test Alive Service - Testing Application!"){
+        stage("Paso 8: Test Alive Service - Testing Application!"){
             steps {
                 sh 'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
             }
@@ -72,7 +69,6 @@ pipeline {
     post {
         always {
             sh "echo 'fase always executed post'"
-            sh """curl -X POST -d '{"title":"new feature","head":"feature-estadomundial","base":"develop"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token $JENKINSTOKEN" https://api.github.com/repos/jesusdonoso/ms-iclab/pulls"""
         }
         success {
             sh "echo 'fase success'"
