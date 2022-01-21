@@ -8,7 +8,7 @@ pipeline {
             steps {
                checkout(
                         [$class: 'GitSCM',
-                        branches: [[name: "feature-estadomundial" ]],
+                        branches: [[name: "develop" ]],
                         userRemoteConfigs: [[url: 'https://github.com/jesusdonoso/ms-iclab.git']]])
             }
         }
