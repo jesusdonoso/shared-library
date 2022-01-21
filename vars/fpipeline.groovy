@@ -3,6 +3,9 @@ def call(String) {
 
 pipeline {
     agent any
+    environment {
+        JENKINSTOKEN = credentials('github-token')
+    }
     stages {
         stage("Paso 1: Download and checkout"){
             steps {
@@ -69,7 +72,7 @@ pipeline {
     post {
         always {
             sh "echo 'fase always executed post'"
-            sh """curl -X POST -d '{"title":"new feature","head":"feature-estadomundial","base":"develop"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token tokendegithub" https://api.github.com/repos/jesusdonoso/ms-iclab/pulls"""
+            sh """curl -X POST -d '{"title":"new feature","head":"feature-estadomundial","base":"develop"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token $JENKINSTOKEN" https://api.github.com/repos/jesusdonoso/ms-iclab/pulls"""
         }
         success {
             sh "echo 'fase success'"
