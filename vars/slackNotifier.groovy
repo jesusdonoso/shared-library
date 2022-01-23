@@ -2,9 +2,9 @@
 
 def call(String buildResult) {
   if ( buildResult == "SUCCESS" ) {
-    slackSend message "paso la wea"
+    slackSend (message "paso la wea")
   }
   else ( buildResult == "FAILURE" ) {
-    slackSend message "falla"
+    slackSend (message "falla")
   }
 }
