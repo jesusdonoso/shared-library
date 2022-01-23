@@ -54,6 +54,9 @@ pipeline {
     post {
         always {
             sh "echo 'fase always executed post'"
+            /* Use slackNotifier.groovy from shared library and provide current build result as parameter */
+            slackNotifier(currentBuild.currentResult)
+            cleanWs()
         }
         success {
             sh "echo 'fase success'"
