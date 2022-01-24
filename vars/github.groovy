@@ -32,7 +32,7 @@ def createBranch() {
     SHA = sh (
         script:
             '''
-                curl https://api.github.com/repos/jesusdonoso/ejemplo-maven/git/refs/heads/shared-library | jq '.object.sha'
+                curl https://api.github.com/repos/jesusdonoso/ejemplo-maven/git/refs/heads/shared-library | jq -r '.object.sha'
             ''',
         returnStdout: true
     ).trim()
