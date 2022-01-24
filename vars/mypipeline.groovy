@@ -1,10 +1,11 @@
 // mypipeline.groovy
 def call(String) {
-environment {
-        JENKINSTOKEN = credentials('github-token')
-    }
+
 pipeline {
     agent any
+    environment {
+        JENKINSTOKEN = credentials('github-token')
+    }
     stages {
         stage("Paso 1: Download and checkout"){
             steps {
