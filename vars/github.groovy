@@ -36,6 +36,11 @@ def createBranch() {
             ''',
         returnStdout: true
     ).trim()
+
+    print (SHA)
+
+    return SHA
+
     sh '''
         curl -s -X POST -H "Authorization: token $JENKINSTOKEN" -H "Accept 'application/vnd.github.v3+json'" -d '{\"ref\": \"refs/heads/prueba-rama\",\"sha\": \"$SHA\"}'  https://api.github.com/repos/jesusdonoso/ejemplo-maven/git/refs
     '''
