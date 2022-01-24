@@ -5,7 +5,7 @@ def call(String buildResult) {
     slackSend (color: "good", message: "[Grupo1][${env.JOB_NAME}][${env.BRANCH_NAME}][Resultado: OK]")
   }
   else ( buildResult == "FAILURE" ) {
-    slackSend (color: "good", message: "[Grupo1][${env.JOB_NAME}][${env.GIT_BRANCH}][Resultado: Failed][${FAILED_STAGE}]")
+    slackSend (color: "good", message: "[Grupo1][${env.JOB_NAME}][${env.GIT_BRANCH}][Resultado: Failed]")
   }
 }
 
