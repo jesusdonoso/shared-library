@@ -59,6 +59,7 @@ pipeline {
             sh("git push origin release/test3")
         }
     }
+    }
     post {
         always {
             sh "echo 'fase always executed post'"
