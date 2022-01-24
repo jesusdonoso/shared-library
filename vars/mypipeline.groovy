@@ -1,6 +1,7 @@
 // mypipeline.groovy
 def call(String) {
 
+def FAILED_STAGE
 pipeline {
     agent any
     stages {
