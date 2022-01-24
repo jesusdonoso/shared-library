@@ -1,6 +1,9 @@
 // mypipeline.groovy
 def call(String) {
-
+environment {
+        GIT_USER         = credentials('user-github')
+        GIT_PASSWORD     = credentials('pass-github')
+    }
 pipeline {
     agent any
     stages {
@@ -17,7 +20,7 @@ pipeline {
                 script {
                 sh "echo 'Compile Code!'"
                 // Run Maven on a Unix agent.
-                shsdfsd "mvn clean compile -e"
+                sh "mvn clean compile -e"
                 }
             }
         }
@@ -48,6 +51,16 @@ pipeline {
             withSonarQubeEnv('sonarqube') { // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
         println "${env.SONAR_HOST_URL}"
     }
+            }
+        }
+        stage('create branch')
+        {
+            stdout = sh(script:'git checkout -b release1',  returnStdout: true)
+            println("GIT add stdout ################ " + stdout + " ####################")
+
+            withCredentials([usernamePassword(passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USER')])
+            {
+                sh('git push origin release/test3')
             }
         }
     }
