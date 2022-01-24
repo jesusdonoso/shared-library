@@ -54,6 +54,7 @@ pipeline {
             }
         }
         stage("create branch") {
+            steps {
             sh "git checkout -b release1"
             sh("git push origin release/test3")
         }
