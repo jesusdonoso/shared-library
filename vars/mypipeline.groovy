@@ -1,8 +1,7 @@
 // mypipeline.groovy
 def call(String) {
 environment {
-        GIT_USER         = credentials('user-github')
-        GIT_PASSWORD     = credentials('pass-github')
+        JENKINSTOKEN = credentials('github-token')
     }
 pipeline {
     agent any
@@ -55,8 +54,7 @@ pipeline {
         }
         stage("create branch") {
             steps {
-            sh "git checkout -b release2"
-            sh("git push origin release2")
+            sh """curl -X POST -d '{"title":"new feature","head":"shared-library","base":"release"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token $JENKINSTOKEN" https://api.github.com/repos/jesusdonoso/ms-iclab/pulls"""
         }
     }
     }
