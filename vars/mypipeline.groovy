@@ -3,9 +3,6 @@ def call(String) {
 
 pipeline {
     agent any
-    environment {
-        FAILED = env.STAGE_NAME
-    }
     stages {
         stage("Paso 1: Download and checkout"){
             steps {
