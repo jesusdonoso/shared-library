@@ -1,5 +1,8 @@
 #!/usr/bin/env groovy
 
+environment {
+        FAILED_STAGE = env.STAGE_NAME
+    }
 def call(String buildResult) {
   if ( buildResult == "SUCCESS" ) {
     slackSend (color: "good", message: "[Grupo1][${env.JOB_NAME}][${env.BRANCH_NAME}][Resultado: OK]")
