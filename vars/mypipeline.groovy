@@ -1,7 +1,6 @@
 // mypipeline.groovy
 def call(String) {
 
-def FAILED_STAGE
 pipeline {
     agent any
     stages {
@@ -19,7 +18,6 @@ pipeline {
                 sh "echo 'Compile Code!'"
                 // Run Maven on a Unix agent.
                 shsdfsd "mvn clean compile -e"
-                FAILED_STAGE=env.STAGE_NAME
                 }
             }
         }
