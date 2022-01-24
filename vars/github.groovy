@@ -14,7 +14,7 @@ def createPullRequest() {
 
 def Map getCommitPayload() {
     def payload = sh (
-        script: 
+        script:
         '''
             curl -X GET -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$REPOSITORY/commits/$GIT_COMMIT
         ''',
@@ -37,10 +37,9 @@ def createBranch() {
         returnStdout: true
     ).trim()
     sh '''
-        curl -s -X POST -H "Authorization: token $JENKINSTOKEN" -H "Content-Type: application/json" -d '{"ref": "refs/heads/test-rama", "sha": "$SHA"}'  https://api.github.com/repos/jesusdonoso/ejemplo-maven/git/refs
+        curl -s -X POST -H "Authorization: token $JENKINSTOKEN" -H -H "Accept 'application/vnd.github.v3+json'" -d '{"ref":"refs/heads/test-rama", "sha":"$SHA"}'  https://api.github.com/repos/jesusdonoso/ejemplo-maven/git/refs
     '''
     sh '''
         curl -X POST -d '{"head":"release","base":"shared-library"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token $JENKINSTOKEN" https://api.github.com/repos/jesusdonoso/ejemplo-maven/merges
     '''
 }
-
