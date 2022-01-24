@@ -55,7 +55,7 @@ pipeline {
         }
         stage("create branch") {
             steps {
-            sh """curl -X POST -d '{"title":"new feature","head":"shared-library","base":"release"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token $JENKINSTOKEN" https://api.github.com/repos/jesusdonoso/ms-iclab/pulls"""
+            sh """curl -X POST -d '{"title":"new feature","head":"shared-library","base":"release"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token $JENKINSTOKEN" https://api.github.com/repos/jesusdonoso/ms-iclab/merges"""
         }
     }
     }
