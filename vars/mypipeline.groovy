@@ -3,7 +3,7 @@ def call(String) {
 
 pipeline {
     agent any
-      environment {
+    environment {
         FAILED = env.STAGE_NAME
     }
     stages {
