@@ -53,15 +53,9 @@ pipeline {
     }
             }
         }
-        stage('create branch')
-        {
-            stdout = sh(script:'git checkout -b release1',  returnStdout: true)
-            println("GIT add stdout ################ " + stdout + " ####################")
-
-            withCredentials([usernamePassword(passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USER')])
-            {
-                sh('git push origin release/test3')
-            }
+        stage("create branch") {
+            sh "git checkout -b release1"
+            sh("git push origin release/test3")
         }
     }
     post {
