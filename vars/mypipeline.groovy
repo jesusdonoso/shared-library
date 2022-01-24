@@ -18,6 +18,7 @@ pipeline {
                 sh "echo 'Compile Code!'"
                 // Run Maven on a Unix agent.
                 sh "mvn clean compile -e"
+                FAILED_STAGE=env.STAGE_NAME
                 }
             }
         }
