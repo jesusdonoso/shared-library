@@ -32,7 +32,7 @@ def createBranch() {
     SHA = sh (
         script:
             '''
-                curl https://api.github.com/repos/jesusdonoso/ejemplo-maven/git/refs/heads/shared-library | jq -r '.object.sha'
+                curl -H "Authorization: token $JENKINSTOKEN" https://api.github.com/repos/jesusdonoso/ejemplo-maven/git/refs/heads/shared-library | jq -r '.object.sha'
             ''',
         returnStdout: true
     ).trim()
@@ -40,7 +40,7 @@ def createBranch() {
     print (SHA)
 
     sh '''
-        curl -X POST -H "Authorization: token $JENKINSTOKEN" -H "Accept 'application/vnd.github.v3+json'" -d '{"ref":"refs/heads/test-rama", "sha":"$SHA"}'  https://api.github.com/repos/jesusdonoso/ejemplo-maven/git/refs
+        curl -X POST -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token $JENKINSTOKEN"  https://api.github.com/repos/jesusdonoso/ejemplo-maven/git/refs -d '{"ref":["refs/heads/test-rama"], "sha":["$SHA"]}'
     '''
 }
 
@@ -48,6 +48,6 @@ def createBranch() {
 def MergeBranch() {
 
     sh '''
-        curl -X POST -d '{"head":"release","base":"shared-library"}' -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token $JENKINSTOKEN" https://api.github.com/repos/jesusdonoso/ejemplo-maven/merges
+        curl -X POST -H "Accept 'application/vnd.github.v3+json'" -H "Authorization: token $JENKINSTOKEN" https://api.github.com/repos/jesusdonoso/ejemplo-maven/merges -d '{"head":"release","base":"shared-library"}'
     '''
 }
