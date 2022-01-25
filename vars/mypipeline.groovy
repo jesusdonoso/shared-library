@@ -60,6 +60,13 @@ pipeline {
                 }
         }
     }
+        stage("Merge branch") {
+            steps {
+            script {
+                    github.MergeBranch()
+                }
+        }
+    }
     }
     post {
         always {
